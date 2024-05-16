@@ -6,4 +6,4 @@ Ovládání:\
 'r "row" "col"' -odhal pole\
 'f "row" "col"' -polož vlajku\
 'q'             -quit když si sračka\
-good luck\
+good luck
