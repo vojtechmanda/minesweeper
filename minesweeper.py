@@ -44,18 +44,17 @@ def print_board(visible_board):
     Prints the current state of the visible board to the console.
     """
     # Print column numbers
-    print("  ", end="")
+    print("   ", end="")
     for col in range(len(visible_board[0])):
-        print(col, end=" ")
+        print(col if col > 9 else f"{col} ", end=" ")  # Add space for col >= 10
     print("")
 
     # Print separator line
-    print("-" * (len(visible_board[0]) * 2 + 2))
-
+    print("-" * ((len(visible_board[0]) * 3) + 3))
     for row in range(len(visible_board)):
-        print(row, "|", sep="", end="")
+        print(row if row > 9 else f"{row} ", "|", sep="", end="")
         for col in range(len(visible_board[0])):
-            print(visible_board[row][col], end=" ")
+            print(visible_board[row][col] if col==len(visible_board[0])-1 else f"{visible_board[row][col]} ", end=" ")
         print("|")
 
 def reveal_cell(row, col, hidden_board, visible_board):
@@ -96,7 +95,7 @@ def play_game(rows, columns, num_mines):
 
         # Get user input inside the loop
         action = input("Enter action (reveal: row col, flag: f row col, quit: q): ").lower().split()
-        if len(action) < 2 or len(action) > 3:
+        if action[0] == 'p' and len(action) < 2 or len(action) > 3 or action[0] == 'f' and len(action) < 2 or len(action) > 3:
             print("Invalid input. Please enter a valid action.")
             continue
 
